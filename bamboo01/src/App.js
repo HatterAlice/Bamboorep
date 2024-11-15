@@ -1,4 +1,5 @@
 import './App.css';
+import { View } from 'react-native'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Card from './components/Card';
@@ -14,11 +15,14 @@ const cardData = [
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Header style={styles.header}/>
       <main className="App-main">
-       <h1>Card List </h1>
-       <div className='card-list' style={styles.cardList}>
-       {cardData.map((card) => (
+        <div style={styles.main}/>
+        <View style={styles.divider}/>
+        <h1>Calientes</h1>
+        <View style={styles.divider}/>
+        <div className='card-list' style={styles.cardList}>
+        {cardData.map((card) => (
           <Card
             key={card.id}
             title={card.title}
@@ -36,11 +40,21 @@ function App() {
 }
 
 const styles = {
+  main: {
+    height: '70px',
+    width: '100%'
+  },
   cardList: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
+  divider: {
+    borderBottomColor: 'rgba(0, 0, 0, .5)',
+    borderBottomWidth: '5px',
+    width:'80%',
+    borderStyle: 'dashed'
+  }
 };
 
 export default App;

@@ -3,16 +3,15 @@ import React from 'react';
 function Header() {
   return (
     <header style={styles.header}>
-      <nav style={styles.navbarStyle}>
-        <div style={styles.navItem}>
-          <a href='.'>
-                {/*Necesito un logo sin texto*/}
-                <img src='http://localhost:8080/logo.jpg' width={"75pc"}></img> 
+      <nav style={styles.navbar}>
+        <div style={styles.navLeft}>
+          <a href="/">
+            <img src="http://localhost:8080/logo.jpg" alt="Logo" style={styles.logo} />
           </a>
-          <a href='.' style={styles.menulink}>
-            <h2>Menu</h2> 
-          </a>
-          {/*Generacion de carritos de comropas interactivo*/}
+        </div>
+        <div style={styles.navRight}>
+          <a href="/" style={styles.menuLink}>Menu</a>
+          <a href="/about" style={styles.menuLink}>Carrito</a>
         </div>
       </nav>
     </header>
@@ -21,30 +20,49 @@ function Header() {
 
 const styles = {
   header: {
-    backgroundColor: '#FFFFF',
-    padding: '10px 20px',
+    width: '100%',        // Ensures the header takes up full width
+    backgroundColor: '#FFF',
+    padding: '0',         // Remove any default padding
+    margin: '0',          // Remove any default margin
+    boxSizing: 'border-box',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: 1000,
   },
-  navList: {
-    listStyle: 'none',
-    padding: 0,
-  },
-  navItem: {
+  navbar: {
     display: 'flex',
-    margin: '0 15px',
-    //paddingLeft: '20px',
-    alignItems: 'center'
+    backgroundColor: '#FFF',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.3)'
+
   },
-  navbarStyle: {
+  navLeft: {
+    alignItems: 'left',
+  },
+  logo: {
+    width: '40px', 
+    height: 'auto',
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    paddingLeft: '30px'
+  },
+  navRight: {
     display: 'flex',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    padding: '1em',
-    backgroundColor: '#fff',
+    justifyContent: 'flex-end',
+    alignItems: 'right',
   },
-  menulink: {
-    paddingLeft: '50px',        // Space between the logo and the menu
-    textDecoration: 'none',    // Remove underline from the link
-    color: 'black', 
-  }
+  menuLink: {
+    color: '#000',
+    textDecoration: 'none',
+    marginLeft: '20px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    transition: 'color 0.3s ease',
+    paddingRight: '20px',
+  },
 };
 
 export default Header;

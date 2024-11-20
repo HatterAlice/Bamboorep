@@ -19,7 +19,7 @@ function App() {
       <main className="App-main">
         <div style={styles.main}/>
         <View style={styles.divider}/>
-        <h1>Calientes</h1>
+        <h1>Milk Tea Series</h1>
         <View style={styles.divider}/>
         <div className='card-list' style={styles.cardList}>
         {cardData.map((card) => (
@@ -32,7 +32,40 @@ function App() {
         ))}
         {/*Cards con botones para agregar o quitar del carrito, interactivo*/}
         {/* Afecta al icono de carrito de compras */}
-       </div>
+        </div>
+        <View style={styles.divider}/>
+        <h1>Lemon Tea Series</h1>
+        <View style={styles.divider}/>
+        {cardData.map((card) => (
+          <Card
+            key={card.id}
+            title={card.title}
+            description={card.description}
+            image={card.image}
+          />
+        ))}
+        <View style={styles.divider}/>
+        <h1>Cheese Milk Cap Series</h1>
+        <View style={styles.divider}/>
+        {cardData.map((card) => (
+          <Card
+            key={card.id}
+            title={card.title}
+            description={card.description}
+            image={card.image}
+          />
+        ))}
+        <View style={styles.divider}/>
+        <h1>Fruit Tea Series</h1>
+        <View style={styles.divider}/>
+        {cardData.map((card) => (
+          <Card
+            key={card.id}
+            title={card.title}
+            description={card.description}
+            image={card.image}
+          />
+        ))}
       </main>
       <Footer />
     </div>

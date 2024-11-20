@@ -13,9 +13,9 @@ function Card({ title, image }) {
   const handleRemove = () => {
     if (count > 0) {
       setCount(count - 1); 
-      console.log(`Removed item Total count: ${count - 1}`)
+      console.log(`Removed item Total count: ${count - 1}`);
     } else {
-      console.log(`No item to remove`)
+      console.log(`No item to remove`);
     }
   }
 
@@ -27,8 +27,13 @@ function Card({ title, image }) {
       </div>
       <img src={image} alt={title} style={styles.image} />
       <div className="card-body" style={styles.body}>
-        <h3>{title}</h3>
-        <ScrollView>
+        <div style={styles.scrollcontainer}>
+          <ScrollView style={styles.titleContainer}>
+            <h5>{title}</h5>
+          </ScrollView>
+        </div>
+        <ScrollView style={styles.buttonContainer}>
+
           {/*Add Button*/}
 
           <Button
@@ -62,6 +67,7 @@ const styles = {
     textAlign: 'center',
     transition: 'transform 0.3s ease-in-out',
     color: 'black',
+    position: 'relative',
   },
   image: {
     width: '100%',
@@ -69,25 +75,42 @@ const styles = {
     objectFit: 'cover',
   },
   body: {
-    padding: '10px',
+    // padding: '10px',
   },
   counterContainer: {
     position: 'absolute',
-    //top: 0,
-    //right: 0,
-    //backgroundColor: 'rgba(0, 128, 0, 0.7)', // Semi-transparent green background
+    top: -10,
+    right: -10,
+    backgroundColor: 'rgba(0, 128, 0, 0.7)', // Semi-transparent green background
     padding: 5,
-    borderRadius: 12,
+    borderRadius: 30,
     minWidth: 30,
     height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'top',
+    alignItems: 'top',
+    zIndex: 1,
   },
   counterText: {
     color: 'black',
     fontWeight: 'bold',
     fontSize: 16,
   },
+  buttonContainer: {
+    // position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    // padding: 10,
+  },
+  titleContainer: {
+    width: '100%',
+    height: '100px',
+    alignItems: 'flex-start',
+  },
+  scrollcontainer: {
+    justifyContent: 'flex-start'
+  }
+
 };
 
 export default Card;

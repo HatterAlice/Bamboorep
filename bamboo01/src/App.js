@@ -36,6 +36,7 @@ function App() {
         <View style={styles.divider}/>
         <h1>Lemon Tea Series</h1>
         <View style={styles.divider}/>
+        <div className='card-list' style={styles.cardList}>
         {cardData.map((card) => (
           <Card
             key={card.id}
@@ -44,9 +45,11 @@ function App() {
             image={card.image}
           />
         ))}
+        </div>
         <View style={styles.divider}/>
         <h1>Cheese Milk Cap Series</h1>
         <View style={styles.divider}/>
+        <div className='card-list' style={styles.cardList}>
         {cardData.map((card) => (
           <Card
             key={card.id}
@@ -55,9 +58,11 @@ function App() {
             image={card.image}
           />
         ))}
+        </div>
         <View style={styles.divider}/>
         <h1>Fruit Tea Series</h1>
         <View style={styles.divider}/>
+        <div className='card-list' style={styles.cardList}>
         {cardData.map((card) => (
           <Card
             key={card.id}
@@ -66,6 +71,7 @@ function App() {
             image={card.image}
           />
         ))}
+        </div>
       </main>
       <Footer />
     </div>

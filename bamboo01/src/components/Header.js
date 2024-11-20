@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Header() {
+  const [count] = useState(0);
   return (
     <header style={styles.header}>
       <nav style={styles.navbar}>
+        <div style={styles.carrritoCounterContainer}>
+          <h1 style={styles.carrritoCounter}>{count}</h1>
+        </div>
         <div style={styles.navLeft}>
           <a href="/">
             <img src="http://localhost:8080/logo.jpg" alt="Logo" style={styles.logo} />
@@ -42,6 +46,13 @@ const styles = {
   navLeft: {
     alignItems: 'left',
   },
+  carrritoCounterContainer:{
+    position: 'absolute', 
+  },
+  carrritoCounter: {
+    
+  },
+
   logo: {
     width: '40px', 
     height: 'auto',

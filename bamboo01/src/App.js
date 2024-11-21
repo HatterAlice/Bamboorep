@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Card from './components/Card';
+import { useState } from 'react';
 
 const cardData = [
   { id: 1, title: "Café", description: "Cafe americano clásico", image: "http://localhost:8080/cafe.jpg"},
@@ -13,9 +14,31 @@ const cardData = [
 
 
 function App() {
+
+  const [cardCounts, setCardCounts] = useState({});
+
+  const handleCardCountAddChange = (id, delta) => {
+    setCardCounts(prevState => {
+      const newCounts = { ...prevState };
+      newCounts[id] = (newCounts[id] || 0) + delta;
+      return newCounts;
+    });
+  };
+
+  const totalCount = Object.values(cardCounts).reduce((acc, count) => acc + count, 0);
+
+
+  const handleCardCountRestChange = (id, delta) => {
+    setCardCounts(prevState => {
+      const newCounts = { ...prevState };
+      newCounts[id] = (newCounts[id] || 0) - delta;
+      return newCounts;
+    })
+  }
+
   return (
     <div className="App">
-      <Header style={styles.header}/>
+      <Header style={styles.header} totalcount={totalCount}/>
       <main className="App-main">
         <div style={styles.main}/>
         <View style={styles.divider}/>
@@ -28,6 +51,8 @@ function App() {
             title={card.title}
             description={card.description}
             image={card.image}
+            onAddCountChange={handleCardCountAddChange}
+            onRestCountChange={handleCardCountRestChange}
           />
         ))}
         {/*Cards con botones para agregar o quitar del carrito, interactivo*/}
@@ -43,6 +68,8 @@ function App() {
             title={card.title}
             description={card.description}
             image={card.image}
+            onAddCountChange={handleCardCountAddChange}
+            onRestCountChange={handleCardCountRestChange}
           />
         ))}
         </div>
@@ -56,6 +83,8 @@ function App() {
             title={card.title}
             description={card.description}
             image={card.image}
+            onAddCountChange={handleCardCountAddChange}
+            onRestCountChange={handleCardCountRestChange}
           />
         ))}
         </div>
@@ -69,6 +98,8 @@ function App() {
             title={card.title}
             description={card.description}
             image={card.image}
+            onAddCountChange={handleCardCountAddChange}
+            onRestCountChange={handleCardCountRestChange}
           />
         ))}
         </div>

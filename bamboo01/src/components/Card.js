@@ -2,18 +2,18 @@
 import React, { useState } from 'react';
 import {Button, ScrollView} from 'react-native'
 
-function Card({ title, image }) {
+function Card({ id, title, image, onAddCountChange, onRestCountChange}) {
   const [count, setCount] = useState(0);
 
   const handleAdd = () => {
     setCount(count + 1);
-    console.log("Added item. total count");
+    onAddCountChange(id, 1)
   }
 
   const handleRemove = () => {
     if (count > 0) {
-      setCount(count - 1); 
-      console.log(`Removed item Total count: ${count - 1}`);
+      setCount(count - 1);
+      onRestCountChange(id, 1)
     } else {
       console.log(`No item to remove`);
     }
@@ -28,7 +28,7 @@ function Card({ title, image }) {
       <img src={image} alt={title} style={styles.image} />
       <div className="card-body" style={styles.body}>
         <div style={styles.scrollcontainer}>
-          <ScrollView style={styles.titleContainer}>
+          <ScrollView>
             <h5>{title}</h5>
           </ScrollView>
         </div>
@@ -101,11 +101,6 @@ const styles = {
     left: 0,
     right: 0,
     // padding: 10,
-  },
-  titleContainer: {
-    width: '100%',
-    height: '100px',
-    alignItems: 'flex-start',
   },
   scrollcontainer: {
     justifyContent: 'flex-start'

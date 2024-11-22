@@ -1,29 +1,31 @@
 // src/components/Card.js
-import React, { useState } from 'react';
-import {Button, ScrollView} from 'react-native'
+import React, { useEffect, useState } from 'react';
+import { Button, ScrollView } from 'react-native';
 
-function Card({ id, title, image, onAddCountChange, onRestCountChange}) {
-  const [count, setCount] = useState(0);
+function Card({ id, title, image, onAddCountChange, onRestCountChange, cardCounts }) {
+  
+  const [count, setCount] = useState(cardCounts[id] || 0); 
+
+  useEffect(() => {
+    setCount(cardCounts[id] || 0);
+  }, [cardCounts, id]);
 
   const handleAdd = () => {
-    setCount(count + 1);
-    onAddCountChange(id, 1)
-  }
+    onAddCountChange(id, 1);
+  };
 
   const handleRemove = () => {
     if (count > 0) {
-      setCount(count - 1);
-      onRestCountChange(id, 1)
+      onRestCountChange(id, 1);
     } else {
-      console.log(`No item to remove`);
+      console.log('No item to remove');
     }
-  }
-
+  };
 
   return (
     <div className="card" style={styles.card}>
       <div style={styles.counterContainer}>
-          <h1 style={styles.counterText}>{count}</h1>
+        <h1 style={styles.counterText}>{count}</h1>
       </div>
       <img src={image} alt={title} style={styles.image} />
       <div className="card-body" style={styles.body}>
@@ -33,19 +35,13 @@ function Card({ id, title, image, onAddCountChange, onRestCountChange}) {
           </ScrollView>
         </div>
         <ScrollView style={styles.buttonContainer}>
+          
+          {/* Add Button */}
+          <Button title={`Add item`} onPress={handleAdd} color="green" />
 
-          {/*Add Button*/}
-
+          {/* Remove Button */}
           <Button
-            title = {`Add item`}
-            onPress={handleAdd}
-            color="green"
-          />
-
-          {/* Remove Button*/}
-
-          <Button 
-            title = {`Remove item`}
+            title={`Remove item`}
             onPress={handleRemove}
             color="red"
             disabled={count === 0}
@@ -103,9 +99,8 @@ const styles = {
     // padding: 10,
   },
   scrollcontainer: {
-    justifyContent: 'flex-start'
-  }
-
+    justifyContent: 'flex-start',
+  },
 };
 
 export default Card;

@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext'; // Import useCart hook
 
-function Header({totalcount}) {
+function Header() {
+  const { totalCount } = useCart(); // Access total count from context
+
   return (
     <header style={styles.header}>
       <nav style={styles.navbar}>
         <div style={styles.navLeft}>
-          <a href="/">
+          <a href="../">
             <img src="http://localhost:8080/logo.jpg" alt="Logo" style={styles.logo} />
           </a>
         </div>
         <div style={styles.navRight}>
-          <a href="/" style={styles.menuLink}>Menú</a>
-          <a href="/" style={styles.menuLink}>
-            <img src='http://localhost:8080/carrito.png' alt="carrito" style={styles.carrito}/>
-          </a>
+          <Link to="/" style={styles.menuLink}>Menú</Link>
+          <Link to="/cart" style={styles.menuLink}>
+            <img src='http://localhost:8080/carrito.png' alt="carrito" style={styles.carrito} />
+          </Link>
           <div style={styles.carrritoCounterContainer}>
-            <h5 style={styles.carrritoCounter}>{totalcount}</h5>
-          </div> 
+            <h5 style={styles.carrritoCounter}>{totalCount}</h5>
+          </div>
         </div>
       </nav>
     </header>
@@ -52,17 +56,17 @@ const styles = {
     top: 15,
     right: 13,
     zIndex: 1,
-    width: 20,  // Increase width to accommodate the text
-    height: 20, // Increase height to accommodate the text
-    borderRadius: 10, // Half of the width and height to make it circular
+    width: 20,
+    height: 20,
+    borderRadius: 10,
     display: 'flex',
-    justifyContent: 'center', // Centers text horizontally
-    alignItems: 'center', // Centers text vertically
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   carrritoCounter: {
-    color: 'white', // Make the text white so it stands out against the red background
-    margin: 0, // Remove default margin on h5 element
-    fontSize: '12px', // Adjust font size as needed
+    color: 'white',
+    margin: 0,
+    fontSize: '12px',
   },
   logo: {
     width: '40px',
@@ -80,7 +84,7 @@ const styles = {
   navRight: {
     display: 'flex',
     justifyContent: 'flex-end',
-    alignItems: 'center', // Fix this to 'center' to vertically align the menu items
+    alignItems: 'center',
   },
   menuLink: {
     color: '#000',

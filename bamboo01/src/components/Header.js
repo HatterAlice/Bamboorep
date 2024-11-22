@@ -15,6 +15,7 @@ function Header() {
         </div>
         <div style={styles.navRight}>
           <Link to="/" style={styles.menuLink}>Menú</Link>
+          <Link to="/apiprueba" style={styles.menuLink}>Api</Link>
           <Link to="/cart" style={styles.menuLink}>
             <img src='http://localhost:8080/carrito.png' alt="carrito" style={styles.carrito} />
           </Link>

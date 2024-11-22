@@ -1,14 +1,27 @@
 import React from 'react';
 import { useCart } from '../context/CartContext'; // Import useCart hook
+import CartCard from '../components/CartCard';
 
 function Cart() {
-  const { cardCounts, cardData } = useCart(); // Access card data and counts from context
-
+  const { cardCounts, cardData, handleCardCountRestChange } = useCart(); // Access card data and counts from context
+  
+  
   return (
     <div style={styles.cart}>
       <h2>Your Cart</h2>
       <div>
-        {Object.keys(cardCounts).length === 0 ? (
+      {cardData.map(card => (
+          <CartCard
+            key={card.id}
+            id={card.id}
+            title={card.title}
+            description={card.description}
+            image={card.image}
+            onRestCountChange={handleCardCountRestChange}
+            cardCounts={cardCounts}
+          />
+        ))}
+        {/* {Object.keys(cardCounts).length === 0 ? (
           <p>Your cart is empty</p>
         ) : (
           cardData.map(card => {
@@ -18,14 +31,20 @@ function Cart() {
                 <div key={card.id}>
                   <h4>{card.title}</h4>
                   <p>{card.description}</p>
-                  <img src={card.image} alt={card.title} width="100" />
-                  <p>Quantity: {count}</p>
+                  <p>Cantida: {count}</p>
+                  <Button title={`x`} onPress={handleRemove} color="white" />
                 </div>
+                // <div key={card.id}>
+                //   <h4>{card.title}</h4>
+                //   <p>{card.description}</p>
+                //   <img src={card.image} alt={card.title} width="100" />
+                //   <p>Quantity: {count}</p>
+                // </div>
               );
             }
             return null;
           })
-        )}
+        )} */}
       </div>
     </div>
   );

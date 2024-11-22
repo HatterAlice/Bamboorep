@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import { CartProvider } from './context/CartContext'; // Import CartProvider
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import ApiPrueba from './pages/ApiPrueba';
 
 const cardData = [
   { id: 1, title: "Café", description: "Cafe americano clásico", image: "http://localhost:8080/cafe.jpg" },
@@ -22,6 +23,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home cardData={cardData} />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path='/apiprueba' element={<ApiPrueba />}/>
             </Routes>
           </main>
           <Footer />

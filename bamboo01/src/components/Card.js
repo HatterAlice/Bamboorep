@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, ScrollView } from 'react-native';
 
-function Card({ id, title, image, onAddCountChange, onRestCountChange, cardCounts }) {
+function Card({ id, title, image, description, onAddCountChange, onRestCountChange, cardCounts }) {
   
   const [count, setCount] = useState(cardCounts[id] || 0); 
 
@@ -31,7 +31,8 @@ function Card({ id, title, image, onAddCountChange, onRestCountChange, cardCount
       <div className="card-body" style={styles.body}>
         <div style={styles.scrollcontainer}>
           <ScrollView>
-            <h5>{title}</h5>
+            <h5 style={styles.cardTitle}>{title}</h5>
+            <p style={styles.cardDescription}>{description}</p>
           </ScrollView>
         </div>
         <ScrollView style={styles.buttonContainer}>
@@ -90,6 +91,12 @@ const styles = {
     color: 'black',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  cardDescription:{
+    fontSize: 10
+  },
+  cardTitle: {
+    fontSize: 20
   },
   buttonContainer: {
     // position: 'absolute',
